@@ -1,125 +1,144 @@
 import 'package:flutter/material.dart';
 
+class Player {
+  String name;
+
+  Player({required this.name}); //생성자 끝
+}
+
 void main() {
-  runApp(const MyApp());
+  var player = Player(name: 'mungi');
+  runApp(App());
+  //App위젯이 제일 먼저 실행되므로 우리 앱의 root라고 할 수 있다.
+  //root에서는 material 디자인과 ios 디자인 중에 선택해야한다.
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // materialApp or
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
+        home: Scaffold(
+            //materialApp의 home 요소는 위젯을 반환해야한다. 사용자가 home에 있을때 보여질 위젯!
+            backgroundColor: Color(0xFF181818),
+            //column은 수직 배열을, row는 수평 배열을 위한 요소이다.
+            body: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 25,
+              ), //symmetric = 대칭, vertical = 세로(위아래), horizontal = 가로(양옆)
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //sizedBox로 그냥 공백부분을 만들어 줄 수 있다.
+                  SizedBox(
+                    height: 60,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment
+                        .spaceBetween, //row의 mainaxis는 수평 방향, crossaxis가 수직방향이다.
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            'left',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        //column의 mainaxis는 수직방향, crossaxis가 수평방향이다.
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Hey, Mungi',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          Text(
+                            'Welcome back',
+                            style: TextStyle(
+                              color: Colors.white54,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 110,
+                  ),
+                  Text(
+                    'Total Balance',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.white.withOpacity(0.8),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    '\$5 194 482',
+                    style: TextStyle(
+                      fontSize: 47,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(45)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 20,
+                            horizontal: 45,
+                          ),
+                          child: Text(
+                            'Transfer',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 41, 41, 41),
+                          borderRadius: BorderRadius.circular(45),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 20,
+                            horizontal: 45,
+                          ),
+                          child: Text(
+                            'Request',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )));
   }
 }
